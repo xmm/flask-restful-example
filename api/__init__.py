@@ -14,9 +14,7 @@ def create_app(environment=None):
     app = Flask(__name__)
 
     if not environment:
-        environment = os.environ.get('FLASK_CONFIG')
-    if not environment:
-        environment = 'development'
+        environment = os.environ.get('FLASK_CONFIG', 'development')
     app.config.from_object('api.config.{}'.format(environment.capitalize()))
     app.config.from_pyfile(
         'config_{}.py'.format(environment.lower()),
